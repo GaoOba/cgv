@@ -1,4 +1,4 @@
-package com.qianfeng.cgv;
+package com.qfedu.cgv;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
