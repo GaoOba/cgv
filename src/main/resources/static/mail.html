@@ -90,11 +90,11 @@
             $.ajax({
                 url:"getCheckCode.do?mail="+email,
                 type:"get",
-                success:function (text) {
-                    if (text != null && text != ""){
+                success:function (obj) {
+                    if (obj.msg != null && obj.msg != ""){
                         layer.close(index);
                         layer.msg("已发送");
-                        checkCode = text;
+                        checkCode = obj.msg;
                         countDown();
                     } else{
                         layer.alert("获取失败，请重新获取")

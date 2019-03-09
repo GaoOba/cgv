@@ -1,6 +1,7 @@
 package com.qfedu.cgv.controller;
 
 import com.qfedu.cgv.comment.utils.ResultUtil;
+import com.qfedu.cgv.comment.vo.ResultVo;
 import com.qfedu.cgv.service.impl.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +24,14 @@ public class MailController {
     private MailService mailService;
 
     @RequestMapping("getCheckCode.do")
-    public String getCheckCode(String mail){
+    public ResultVo getCheckCode(String mail){
         String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
         String message = "您的注册验证码为："+checkCode;
         try {
             mailService.sendSimpleMail(mail, "注册验证码", message);
         }catch (Exception e){
-            return "";
+            return ResultUtil.exec(false,null,null);
         }
-        return ResultUtil.exec(true,"");
+        return ResultUtil.exec(true,checkCode,null);
     }
 }
