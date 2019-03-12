@@ -3,8 +3,8 @@ package com.qfedu.cgv.comment.vo;
 import java.util.List;
 
 /**
- *@Author feri
- *@Date Created in 2019/2/19 10:24
+ * @Author feri
+ * @Date Created in 2019/2/19 10:24
  */
 public class PageVo<T> {
     private long count;

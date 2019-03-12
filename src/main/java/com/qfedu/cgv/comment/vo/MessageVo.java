@@ -1,11 +1,20 @@
-package com.qfedu.cgv.entity;
+package com.qfedu.cgv.comment.vo;
 
-public class Message {
+/**
+ * Created with IntelliJ IDEA.
+ * User: 冯志立
+ * Date: 2019/3/11
+ * Time: 17:53
+ * Description: No Description
+ */
+public class MessageVo {
     private Integer id;
 
     private Integer uid;
 
     private Integer typeid;
+
+    private String typeName;
 
     private String details;
 
@@ -33,11 +42,19 @@ public class Message {
         this.typeid = typeid;
     }
 
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
     public String getDetails() {
         return details;
     }
 
     public void setDetails(String details) {
-        this.details = details == null ? null : details.trim();
+        this.details = details;
     }
 }

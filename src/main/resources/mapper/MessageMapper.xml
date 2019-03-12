@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.qfedu.cgv.entity.Message">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
     <result column="details" jdbcType="VARCHAR" property="details" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, uid, title, details
+    id, uid, typeid, details
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qfedu.cgv.entity.Message">
-    insert into t_message (id, uid, title, 
+    insert into t_message (id, uid, typeid, 
       details)
-    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, 
       #{details,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qfedu.cgv.entity.Message">
@@ -35,8 +35,8 @@
       <if test="uid != null">
         uid,
       </if>
-      <if test="title != null">
-        title,
+      <if test="typeid != null">
+        typeid,
       </if>
       <if test="details != null">
         details,
@@ -49,8 +49,8 @@
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
       </if>
       <if test="details != null">
         #{details,jdbcType=VARCHAR},
@@ -63,8 +63,8 @@
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
       </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
+      <if test="typeid != null">
+        typeid = #{typeid,jdbcType=INTEGER},
       </if>
       <if test="details != null">
         details = #{details,jdbcType=VARCHAR},
@@ -75,8 +75,19 @@
   <update id="updateByPrimaryKey" parameterType="com.qfedu.cgv.entity.Message">
     update t_message
     set uid = #{uid,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER},
       details = #{details,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findById" resultType="com.qfedu.cgv.comment.vo.MessageVo">
+    SELECT
+      m.*, mt.`name` typeName
+    FROM
+      t_message m
+      INNER JOIN t_message_type mt ON m.typeid = mt.id
+      INNER JOIN t_user u ON m.uid = u.id
+    WHERE
+      u.id = #{uId}
+      AND mt.id = #{typeId}
+  </select>
 </mapper>

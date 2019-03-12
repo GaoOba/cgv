@@ -4,10 +4,12 @@ import com.qfedu.cgv.comment.vo.ResultVo;
 import com.qfedu.cgv.entity.User;
 import com.qfedu.cgv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -15,9 +17,7 @@ public class UserController {
 
     @PostMapping("userlogin.do")
     public ResultVo login(String name, String password){
-        ResultVo resultVo = service.login(name, password);
-        return resultVo;
-    }
+        return service.login(name, password); }
     @PostMapping("register.do")
     public ResultVo register(User user){
         return service.register(user);

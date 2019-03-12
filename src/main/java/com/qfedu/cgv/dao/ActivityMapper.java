@@ -17,5 +17,5 @@ public interface ActivityMapper {
 
     int updateByPrimaryKey(Activity record);
 
-    List<Activity> findAll();
+    List<Activity> findByType(int type);
 }

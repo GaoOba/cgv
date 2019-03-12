@@ -23,7 +23,12 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityMapper activityMapper;
 
     @Override
-    public ResultVo findAll() {
-        return ResultUtil.exec(true,"OK",activityMapper.findAll());
+    public ResultVo findOnline() {
+        return ResultUtil.exec(true,"OK",activityMapper.findByType(1));
+    }
+
+    @Override
+    public ResultVo findLocal() {
+        return ResultUtil.exec(true,"OK",activityMapper.findByType(2));
     }
 }

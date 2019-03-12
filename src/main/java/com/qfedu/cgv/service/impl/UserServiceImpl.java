@@ -9,6 +9,9 @@ import com.qfedu.cgv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -16,10 +19,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVo login(String name, String password) {
-        User user1 = userMapper.findByName(name);
-        if (user1 != null) {
-            if (user1.getPassword().equals(password)) {
-                return ResultUtil.execLogin(true, "OK", user1, SystemCon.map.get("token"));
+        User user = userMapper.findByName(name);
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("user", user);
+                map.put(SystemCon.TOKEN, user.getId());
+                return ResultUtil.exec(true, "OK", map);
             }
         }
         return ResultUtil.exec(false, "用户名或密码错误", null);
@@ -28,11 +34,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVo register(User user) {
-        int i = userMapper.insertSelective(user);
-        if (i > 0) {
-            return ResultUtil.exec(true, "OK", null);
+        if (userMapper.findByName(user.getName()) == null) {
+            int i = userMapper.insertSelective(user);
+            if (i > 0) {
+                return ResultUtil.exec(true, "OK", null);
+            }
         }
-        return ResultUtil.exec(false, "注册失败", null);
+        return ResultUtil.exec(false, "用户名重复", null);
     }
 
     @Override

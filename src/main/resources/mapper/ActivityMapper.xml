@@ -89,7 +89,7 @@
       title = #{title,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findAll" resultMap="BaseResultMap">
-    select * from t_activity
+  <select id="findByType" resultMap="BaseResultMap">
+    select * from t_activity where type=#{type}
   </select>
 </mapper>

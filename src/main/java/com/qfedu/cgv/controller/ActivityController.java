@@ -5,6 +5,7 @@ import com.qfedu.cgv.comment.vo.ResultVo;
 import com.qfedu.cgv.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  * Description: No Description
  */
 @RestController
+@CrossOrigin
 public class ActivityController {
     @Autowired
     ActivityService activityService;
 
-    @GetMapping("activityList.do")
-    public ResultVo findAll(){
-        return activityService.findAll();
+    @GetMapping("onlineActivity.do")
+    public ResultVo findOnline(){
+        return activityService.findOnline();
     }
+    @GetMapping("localActivity.do")
+    public ResultVo findLocal(){ return activityService.findLocal(); }
 }
