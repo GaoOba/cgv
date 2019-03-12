@@ -32,6 +32,19 @@ public class MovieServiceImpl implements MovieService {
     public ResultVo findAll() {
         List<Movie> movies = movieMapper.findAll();
         List<MovieVo> movieVos = new ArrayList<>();
+        movieVos = movieLable(movieVos, movies);
+        return ResultUtil.exec(true,"OK",movieVos);
+    }
+
+    @Override
+    public ResultVo findByStatus(int status) {
+        List<MovieVo> movieVos = new ArrayList<>();
+        List<Movie> movies = movieMapper.findByStatus(status);
+        movieVos = movieLable(movieVos, movies);
+        return ResultUtil.exec(true,"OK",movieVos);
+    }
+
+    private List<MovieVo> movieLable(List<MovieVo> movieVos, List<Movie> movies) {
         for (Movie movie:movies) {
             Integer id = movie.getId();
             MovieVo movieVo = new MovieVo();
@@ -40,6 +53,6 @@ public class MovieServiceImpl implements MovieService {
             movieVo.setLabels(labels);
             movieVos.add(movieVo);
         }
-        return ResultUtil.exec(true,"OK",movieVos);
+        return movieVos;
     }
 }

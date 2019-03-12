@@ -24,4 +24,9 @@ public class MovieController {
 
     @GetMapping("movies.do")
     public ResultVo findAll(){return service.findAll();}
+
+    @GetMapping("moviesBystatus.do")
+    public ResultVo findByStatus() {
+        return service.findByStatus(0);
+    }
 }

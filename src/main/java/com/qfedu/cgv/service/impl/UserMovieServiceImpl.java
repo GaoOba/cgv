@@ -32,4 +32,9 @@ public class UserMovieServiceImpl implements UserMovieService {
     public ResultVo insert(UserMovie userMovie) {
         return ResultUtil.exec(true, "OK", userMovieMapper.insert(userMovie));
     }
+
+    @Override
+    public ResultVo delLike(int uid, int mid) {
+        return ResultUtil.exec(true,"OK",userMovieMapper.deleteById(uid, mid));
+    }
 }

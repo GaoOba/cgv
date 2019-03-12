@@ -18,4 +18,6 @@ public interface MovieMapper {
     int updateByPrimaryKey(Movie record);
 
     List<Movie> findAll();
+
+    List<Movie> findByStatus(int status);
 }

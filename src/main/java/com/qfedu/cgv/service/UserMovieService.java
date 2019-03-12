@@ -14,4 +14,6 @@ public interface UserMovieService {
     ResultVo findById(int id);
 
     ResultVo insert(UserMovie userMovie);
+
+    ResultVo delLike(int uid, int mid);
 }

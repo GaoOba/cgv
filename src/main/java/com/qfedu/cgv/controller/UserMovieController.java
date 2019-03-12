@@ -7,7 +7,6 @@ import com.qfedu.cgv.service.UserMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,5 +37,11 @@ public class UserMovieController {
         userMovie.setMid(movieid);
         userMovie.setUid(Integer.parseInt(uid));
         return service.insert(userMovie);
+    }
+
+    @GetMapping("delLike.do")
+    public ResultVo delLike(HttpServletRequest request,int movieid){
+        String uid = request.getHeader(SystemCon.TOKEN);
+        return service.delLike(Integer.parseInt(uid),movieid);
     }
 }

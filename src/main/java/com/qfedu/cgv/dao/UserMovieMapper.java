@@ -2,6 +2,7 @@ package com.qfedu.cgv.dao;
 
 import com.qfedu.cgv.entity.Movie;
 import com.qfedu.cgv.entity.UserMovie;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface UserMovieMapper {
     int updateByPrimaryKey(UserMovie record);
 
     List<Movie> findById(int uid);
+
+    int deleteById(@Param("uid") int uid, @Param("mid") int mid);
 }
