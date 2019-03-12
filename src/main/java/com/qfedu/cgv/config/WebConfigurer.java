@@ -26,7 +26,7 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         String[] strs = new String[]{
-                "/likeMovie.do","/addLike.do","/message.do"
+                "/likeMovie.do","/addLike.do","/message.do","/couponse/findAll.do"
         };
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
