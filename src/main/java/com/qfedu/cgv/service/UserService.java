@@ -16,4 +16,6 @@ public interface UserService {
     ResultVo register(User user);
 
     ResultVo validate(String name);
+
+    ResultVo update(User user);
 }

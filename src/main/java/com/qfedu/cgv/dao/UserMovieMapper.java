@@ -22,4 +22,6 @@ public interface UserMovieMapper {
     List<Movie> findById(int uid);
 
     int deleteById(@Param("uid") int uid, @Param("mid") int mid);
+
+    int countMovie(@Param("uid") int uid, @Param("mid") int mid);
 }

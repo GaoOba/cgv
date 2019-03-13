@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
         }
         return ResultUtil.exec(true, "OK", null);
     }
+
+    @Override
+    public ResultVo update(User user) {
+        return ResultUtil.exec(true,"OK",userMapper.updateByPrimaryKeySelective(user));
+    }
 }

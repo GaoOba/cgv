@@ -30,7 +30,12 @@ public class UserMovieServiceImpl implements UserMovieService {
 
     @Override
     public ResultVo insert(UserMovie userMovie) {
+        int i = userMovieMapper.countMovie(userMovie.getUid(), userMovie.getMid());
+        if (i == 0){
         return ResultUtil.exec(true, "OK", userMovieMapper.insert(userMovie));
+        } else {
+        return ResultUtil.exec(false, "电影已存在", null);
+        }
     }
 
     @Override

@@ -78,4 +78,7 @@
   <delete id="deleteById">
     delete from t_user_movie where mid=#{mid} and uid=#{uid}
   </delete>
+  <select id="countMovie">
+    ELECT count(*) from t_user_movie where uid=#{uid} and mid=#{mid}
+  </select>
 </mapper>

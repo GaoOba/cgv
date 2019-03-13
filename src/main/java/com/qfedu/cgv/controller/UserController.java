@@ -1,5 +1,6 @@
 package com.qfedu.cgv.controller;
 
+import com.qfedu.cgv.comment.utils.ResultUtil;
 import com.qfedu.cgv.comment.vo.ResultVo;
 import com.qfedu.cgv.entity.User;
 import com.qfedu.cgv.service.UserService;
@@ -8,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +36,10 @@ public class UserController {
     @PostMapping("username.do")
     public ResultVo username(@ApiParam(name = "name", value = "名字") String name){
         return service.validate(name);
+    }
+
+    @PostMapping("update.do")
+    public ResultVo update(User user){
+        return service.update(user);
     }
 }
