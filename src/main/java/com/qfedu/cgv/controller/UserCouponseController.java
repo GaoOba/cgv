@@ -22,8 +22,6 @@ public class UserCouponseController {
     @Autowired
     private UserCouponsService ucService;
 
-
-
     @PostMapping("/add.do")
     public ResultVo add(HttpServletRequest request, UserCoupons userCoupons) {
 
@@ -32,9 +30,6 @@ public class UserCouponseController {
         userCoupons.setUid(Integer.parseInt(token));
 
         return ucService.add(userCoupons);
-
-
-
 
     }
 
