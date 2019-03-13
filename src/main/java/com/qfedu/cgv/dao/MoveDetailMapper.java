@@ -3,6 +3,7 @@ package com.qfedu.cgv.dao;
 import com.qfedu.cgv.entity.MoveDetail;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface MoveDetailMapper {
