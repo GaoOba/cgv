@@ -103,4 +103,7 @@
       image = #{image,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findByType" resultMap="BaseResultMap">
+      select * from t_goods where typeid=#{type}
+  </select>
 </mapper>

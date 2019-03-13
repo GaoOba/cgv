@@ -7,6 +7,7 @@ import com.qfedu.cgv.service.UserMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,24 +25,24 @@ public class UserMovieController {
     @Autowired
     private UserMovieService service;
 
-    @GetMapping("likeMovie.do")
+    @PostMapping("likeMovie.do")
     public ResultVo findById(HttpServletRequest request){
-        String uid = request.getHeader(SystemCon.TOKEN);
+        String uid = request.getParameter(SystemCon.TOKEN);
         return service.findById(Integer.parseInt(uid));
     }
 
-    @GetMapping("addLike.do")
+    @PostMapping("addLike.do")
     public ResultVo addLike(HttpServletRequest request,int movieid){
-        String uid = request.getHeader(SystemCon.TOKEN);
+        String uid = request.getParameter(SystemCon.TOKEN);
         UserMovie userMovie = new UserMovie();
         userMovie.setMid(movieid);
         userMovie.setUid(Integer.parseInt(uid));
         return service.insert(userMovie);
     }
 
-    @GetMapping("delLike.do")
+    @PostMapping("delLike.do")
     public ResultVo delLike(HttpServletRequest request,int movieid){
-        String uid = request.getHeader(SystemCon.TOKEN);
+        String uid = request.getParameter(SystemCon.TOKEN);
         return service.delLike(Integer.parseInt(uid),movieid);
     }
 }

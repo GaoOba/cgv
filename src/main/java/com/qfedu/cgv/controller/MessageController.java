@@ -28,7 +28,7 @@ public class MessageController {
 
     @PostMapping("message.do")
     public ResultVo findMessage(HttpServletRequest request, int typeId){
-        String token = request.getHeader(SystemCon.TOKEN);
+        String token = request.getParameter(SystemCon.TOKEN);
         return messageService.findById(Integer.parseInt(token), typeId);
     }
 }

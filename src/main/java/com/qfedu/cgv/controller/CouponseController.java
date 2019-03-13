@@ -23,11 +23,8 @@ public class CouponseController {
     @GetMapping("/findAll.do")
     public ResultVo findCouponseByTypeAndID(HttpServletRequest request, int type) {
 
-        String token = request.getHeader(SystemCon.TOKEN);
-
-
-        ResultVo vo = couService.findAllCoupons(type, Integer.parseInt(token));
-        return vo;
+        String token = request.getParameter(SystemCon.TOKEN);
+        return couService.findAllCoupons(type, Integer.parseInt(token));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.qfedu.cgv.controller;
 
+import com.qfedu.cgv.comment.sysconst.SystemCon;
 import com.qfedu.cgv.comment.vo.ResultVo;
 import com.qfedu.cgv.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Description: No Description
  */
 @RestController
-@CrossOrigin
+@CrossOrigin(allowedHeaders = SystemCon.TOKEN)
 public class ActivityController {
     @Autowired
     ActivityService activityService;

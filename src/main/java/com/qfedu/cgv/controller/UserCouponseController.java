@@ -8,6 +8,7 @@ import com.qfedu.cgv.entity.UserCoupons;
 import com.qfedu.cgv.service.UserCouponsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,10 @@ public class UserCouponseController {
 
 
 
-    @GetMapping("/add.do")
+    @PostMapping("/add.do")
     public ResultVo add(HttpServletRequest request, UserCoupons userCoupons) {
 
-        String token = request.getHeader(SystemCon.TOKEN);
+        String token = request.getParameter(SystemCon.TOKEN);
 
         userCoupons.setUid(Integer.parseInt(token));
 

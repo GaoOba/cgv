@@ -31,7 +31,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-                return request.getHeader(SystemCon.TOKEN) != null;
+                return request.getParameter(SystemCon.TOKEN) != null;
             }
         }).addPathPatterns(strs);
     }

@@ -2,6 +2,8 @@ package com.qfedu.cgv.dao;
 
 import com.qfedu.cgv.entity.Card;
 
+import java.util.List;
+
 public interface CardMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface CardMapper {
     int updateByPrimaryKeySelective(Card record);
 
     int updateByPrimaryKey(Card record);
+
+    List<Card> findAll();
 }
