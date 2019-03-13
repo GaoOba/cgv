@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.cgv.dao.MoveDetailMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.cgv.entity.MoveDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="overtime" jdbcType="TIMESTAMP" property="overtime" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="daytime" jdbcType="TIMESTAMP" property="daytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, starttime, overtime, language, address, price, daytime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_movedetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_movedetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.cgv.entity.MoveDetail">
+    insert into t_movedetail (id, starttime, overtime, 
+      language, address, price, 
+      daytime)
+    values (#{id,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, #{overtime,jdbcType=TIMESTAMP}, 
+      #{language,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{daytime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.cgv.entity.MoveDetail">
+    insert into t_movedetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="overtime != null">
+        overtime,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="daytime != null">
+        daytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtime != null">
+        #{overtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="daytime != null">
+        #{daytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.cgv.entity.MoveDetail">
+    update t_movedetail
+    <set>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtime != null">
+        overtime = #{overtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="daytime != null">
+        daytime = #{daytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.cgv.entity.MoveDetail">
+    update t_movedetail
+    set starttime = #{starttime,jdbcType=TIMESTAMP},
+      overtime = #{overtime,jdbcType=TIMESTAMP},
+      language = #{language,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      daytime = #{daytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByIdAndDayTime" resultType="com.qfedu.cgv.entity.MoveDetail">
+    select md.id,md.starttime,
+    md.overtime,md.language,
+    md.price,md.address
+    FROM t_movedetail md
+    inner join t_move_movedetali mm
+    on md.id=mm.mdid
+    inner join t_movie m
+    on mm.moveid=m.id
+    where m.id=#{mid} and md.daytime LIKE "%"#{daytime}"%"
+    ORDER BY md.id
+  </select>
+</mapper>

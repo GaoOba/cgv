@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.cgv.dao.MoveMoveDetailMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.cgv.entity.MoveMoveDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="moveid" jdbcType="INTEGER" property="moveid" />
+    <result column="mdid" jdbcType="INTEGER" property="mdid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, moveid, mdid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_move_movedetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_move_movedetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.cgv.entity.MoveMoveDetail">
+    insert into t_move_movedetail (id, moveid, mdid
+      )
+    values (#{id,jdbcType=INTEGER}, #{moveid,jdbcType=INTEGER}, #{mdid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.cgv.entity.MoveMoveDetail">
+    insert into t_move_movedetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moveid != null">
+        moveid,
+      </if>
+      <if test="mdid != null">
+        mdid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moveid != null">
+        #{moveid,jdbcType=INTEGER},
+      </if>
+      <if test="mdid != null">
+        #{mdid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.cgv.entity.MoveMoveDetail">
+    update t_move_movedetail
+    <set>
+      <if test="moveid != null">
+        moveid = #{moveid,jdbcType=INTEGER},
+      </if>
+      <if test="mdid != null">
+        mdid = #{mdid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.cgv.entity.MoveMoveDetail">
+    update t_move_movedetail
+    set moveid = #{moveid,jdbcType=INTEGER},
+      mdid = #{mdid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
