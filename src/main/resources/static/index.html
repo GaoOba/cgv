@@ -10,23 +10,9 @@
 <h1>我是主页</h1>
 <p></p>
 <p></p>
-<p id="img"></p>
+<img src="http://101.132.136.49/image/red.jpg">
 
 <script>
-    $(function () {
-        $.ajax({
-            type:"get",
-            url:"/cgv-2.0/movies.do",
-            success:function (obj) {
-                var infos = obj.data;
-                $(infos).each(function () {
-                var html = "";
-                html += "<img src='"+this.image+"'>";
-                $("#img").append(html);
-                });
-            }
-        })
-    })
 </script>
 </body>
 </html>

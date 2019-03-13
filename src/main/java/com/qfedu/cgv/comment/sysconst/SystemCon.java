@@ -8,7 +8,7 @@ public class SystemCon {
     public  static final int OK = 1;
     public static final int ERROR = 100;
     //登录令牌
-    public static final String TOKEN = "xl-server_token";
+    public static final String TOKEN = "token";
     public static final Map<String,Object> map = new HashMap<>();
     static {
         map.put(TOKEN,null);

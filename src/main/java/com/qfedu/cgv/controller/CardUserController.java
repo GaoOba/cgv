@@ -6,6 +6,7 @@ import com.qfedu.cgv.entity.CardUser;
 import com.qfedu.cgv.service.CardUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class CardUserController {
     @Autowired
     CardUserService service;
 
-    @RequestMapping("addCard.do")
+    @PostMapping("addCard.do")
     public ResultVo addCard(int cardid, HttpServletRequest request){
         String uid = request.getParameter(SystemCon.TOKEN);
         CardUser cardUser = new CardUser();
